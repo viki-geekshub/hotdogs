@@ -26,6 +26,10 @@ Route::prefix('v1')->group(function(){
         Route::middleware('auth:api')->group(function(){
             Route::get('logout', 'UserController@logout');
             Route::get('','UserController@getAll');
+            Route::get('follow/{followedId}','UserController@like');
+            Route::get('unfollow/{followedId}','UserController@nope');
+            Route::get('info', 'UserController@infoUser');
+            Route::put('', 'UserController@update');
             // Route::post('comment/{id}','UserController@addComment');
         });
     });

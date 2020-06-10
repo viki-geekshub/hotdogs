@@ -38,6 +38,7 @@ class UserController extends Controller
             $token = $user->createToken('authToken')->accessToken;
             $user->token = $token;
             return response([
+                'message' => 'Usuario conectado con éxito',
                 'user' => $user
             ]);
         }catch(\Exception $error){
@@ -61,11 +62,38 @@ class UserController extends Controller
             ], 500);
         }   
     }
-    public function getAll()
+    public function update(Request $request) // Para modificar el perfil del usuario
     {
-        try {   
+        try {
+            $body = $request->validate([
+                'name' => 'string',
+                'email' => 'string',
+                'password' => 'string'
+            ]);
+            $id = Auth::id();
+            $user = User::find($id);
+            if ($request->has('password')){
+                $body['password']=Hash::make($body['password']);
+            }
+            $user->update($body);
+            return response($user);
+        } catch (\Exception $e) {
+            return response([
+                'message' => 'Hubo un error al intentar actualizar el perfil',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function getAll()  // Nos muestra todos los usuarios con los que no has interactuado aún (No aparecen los que ya has dado like, ni los que has dado nope, pero si aparecen los que te han dado nope a ti)
+    {
+        try {    
             $user_id = Auth::id();
-            $users = User::where('id', '<>', $user_id)->get(); 
+            $interacted_ids = DB::table('matchs')->where('follower_id', $user_id)->where(function($query){
+                $query->where('like',1)->orWhere('nope',1);
+            })->get()->pluck('followed_id'); //pluck: para sacar un array de objetos
+           
+
+            $users = User::whereNotIn('id', $interacted_ids->push($user_id))->get();
             return response($users);
         } catch (\Exception $error) {
             return response([
@@ -73,8 +101,41 @@ class UserController extends Controller
             ], 500);
         }
     }
-
-
+    public function infoUser(){
+        return Auth::user();
+    }
+    public function like($followedId)
+    {
+       $followerId=Auth::id();
+    //    $user = User::find($followedId)->following()->attach([$followedId=>['like'=>true]]);
+    $mutualFollowers =DB::table('matchs')->where('follower_id',$followedId)->where('followed_id',$followerId)->where('like',true);    
+    $isMatch=$mutualFollowers->get()->isNotEmpty();
+        DB::table('matchs')->insert([
+            'follower_id'=>$followerId,
+            'followed_id'=>$followedId,
+            'like'=>true,
+            'match'=>$isMatch,
+            'nope'=>false,
+            ]);
+            if($isMatch){
+                $user = User::find($followedId);
+                $mutualFollowers->update(['match'=>true]);
+                  return response(['message'=>'has hecho match','user'=>$user],201);
+                }
+            return response(['message'=>'Te mola']);
+    }
+    public function nope($followedId)
+    {
+       $followerId=Auth::id();
+        DB::table('matchs')->insert([
+            'follower_id'=>$followerId,
+            'followed_id'=>$followedId,
+            'like'=>false,
+            'match'=>false,
+            'nope'=>true,
+            ]);
+            return response(['message'=>'No te mola']);
+    }
     // public function addComment(Request $request,$id)
     // {
     //     try {
