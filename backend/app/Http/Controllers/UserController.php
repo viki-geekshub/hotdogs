@@ -68,7 +68,17 @@ class UserController extends Controller
             $body = $request->validate([
                 'name' => 'string',
                 'email' => 'string',
-                'password' => 'string'
+                'password' => 'string',
+                'dog_images' => 'string',
+                'about_me' => 'string',
+                'city' => 'string',
+                'age' => 'integer',
+                'race' => 'string',
+                'color' => 'string',
+                'human_name' => 'string',
+                'human_images' => 'string',
+                'about_my_human' => 'string',
+                'age_my_human' => 'integer'
             ]);
             $id = Auth::id();
             $user = User::find($id);
