@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    a {
+        all: unset;
+        padding: 0.5em;
+        margin: 0 2em;
+        cursor: pointer;
+        // color: pink;
+        // &:hover {
+        //     background-color: #e01a3b;
+        //     color: grey;
+        // }
+    }
+    img{
+        width: 2em;
+    }
+}

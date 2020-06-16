@@ -1,0 +1,79 @@
+.profile{
+    display: flex;
+    flex-direction: column;
+
+    .titleProfile{
+        margin-bottom: 0;
+    }
+    .cardDog, .cardHuman{
+        border: 1px solid black;
+        border-radius: 0.5em;
+        margin: 0.5em 1.5em;
+        padding: 1em;
+    }
+    .cardHuman{
+        display:flex;
+        flex-direction: column;
+    }
+    .upDog, .upHuman{
+        display:flex;
+        // align-items: flex-start;
+    }
+    .upHuman{
+        justify-content: space-between;
+    }
+    .description{
+        width: 100%;
+        margin-top: 1em;
+    }
+    .photos{
+        width: 10em;
+        object-fit: contain;
+    }
+    .data{
+        width: 100%;
+    }
+    .pDog{
+        padding-left: 1em;
+        line-height: 0.8em;
+    }
+    p, .pDog{
+        text-align: left;
+        line-height: 1.6em;
+    }
+    .button{
+        font-size: 0.7em;
+        cursor: pointer;
+        color: white !important;
+        margin: 0 auto;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 50%;
+        text-transform: initial;
+        font-size: 0.8em;
+        padding: 0.5em;
+    }
+    .iconLogout{
+        width: 2em;
+        margin-right: 1em;
+    }
+    .notFound{
+        margin: 0 auto;
+        width: 50%;
+        background-image: url(../../assets/images/error.jpg);
+        background-repeat: no-repeat;
+    }
+}
+///// Edit Profile
+
+.formContainer {
+    display: flex;
+    padding: 3em;
+    justify-content: center;
+    padding: 0em 3em;
+}
+.editButton{
+    background-color: #3f51b5;
+    border-color: #3f51b5;
+    color: white;
+}

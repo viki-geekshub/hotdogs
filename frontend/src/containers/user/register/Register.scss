@@ -1,0 +1,24 @@
+.registerContainer{
+    padding: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        min-height: 40vh;
+        align-items: center;
+        input{
+        min-width: 35vw;
+        }
+        button{
+            width: 50%;
+            margin-top: 2em;
+        }
+        .loginLink{
+            width: 100%;
+        }
+    }  
+}

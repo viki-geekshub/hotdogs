@@ -1,0 +1,49 @@
+.dogs{
+    display: flex;
+    flex-direction: column;
+
+    .titleProfile{
+
+    }
+    .cardDog, .cardHuman{
+        border: 1px solid black;
+        border-radius: 0.5em;
+        margin: 0.5em 1.5em;
+        padding: 1em;
+    }
+    .cardHuman{
+        display:flex;
+        flex-direction: column;
+    }
+    .upDog, .upHuman{
+        display:flex;
+        // align-items: flex-start;
+    }
+    .upHuman{
+        justify-content: space-between;
+    }
+    .description{
+        width: 100%;
+        margin-top: 1em;
+    }
+    .photos{
+        width: 10em;
+        object-fit: contain; // para que la imagen no se deforme
+    }
+    .data{
+        width: 100%;
+    }
+    .pDog{
+        padding-left: 1em;
+        line-height: 0.8em;
+    }
+    p, .pDog{
+        text-align: left;
+        line-height: 1.6em;
+    }
+    .nopeButton, .likeButton{
+        width: 3em;
+        cursor:pointer;
+        margin: 0.5em  2em;
+    }
+}

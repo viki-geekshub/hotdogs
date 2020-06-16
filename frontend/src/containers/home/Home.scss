@@ -1,0 +1,36 @@
+.home{
+    display: flex;
+    justify-content: flex-end; 
+    color: white;
+    // Para centrar la imagen de fondo: 
+    background-image: url(../../assets/images/portada_editada.jpg);    
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 90.6vh;
+    background-repeat: no-repeat;
+    // Para hacer la imagen mas transparente:
+    // background-color: hsla(0,0%,100%,0.70);
+    // background-blend-mode: overlay;
+}
+.containerHome{
+    width: 50%;
+    margin-top: 1em;
+    margin-right: 1em;
+    h1{
+        color:white;
+    }
+    .loginButton, .registerButton{
+        background-color:white;
+        text-decoration: none;
+        text-transform: initial;
+        color: #3f51b5 !important;
+    }
+    .loginButton{
+        font-size: 1.2em;
+        margin-bottom: 1em;
+    }
+    .registerButton{   
+        padding: 0.6em;
+    }
+}
