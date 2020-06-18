@@ -154,7 +154,7 @@ class UserController extends Controller
             'match'=>false,
             'nope'=>true,
             ]);
-            return response(['message'=>'No te gusta']);
+            return response(['message'=>'No te gusta','user'=>$user],201);
     }
     // public function addComment(Request $request,$id)
     // {

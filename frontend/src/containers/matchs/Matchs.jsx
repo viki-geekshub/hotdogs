@@ -5,7 +5,7 @@ import './Matchs.scss';
 import { Button, Tooltip } from 'antd';
 import { Spin } from 'antd';
 
-const Matchs =({users})=> {
+const Matchs =({matchs})=> {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         getOnlyMatchs()
@@ -20,13 +20,13 @@ const Matchs =({users})=> {
         <Fragment>
             <h1 className="titleMatchs">Mis Matchs</h1>
             { 
-                loading && !users?.length>0 && <div className="spinner"><Spin size="large" /></div>
+                loading && <div className="spinner"><Spin size="large" /></div>
             }
             { 
-                !loading && users?.length>0 && <div className="matchsList">
+                !loading && matchs?.length>0 && <div className="matchsList">
                 {
-                    users.map(match=> {return (   
-                        <div className="userMatch"> 
+                    matchs.map(match=> {return (   
+                        <div key={match.id} className="userMatch"> 
                             <Tooltip title="Su perfil">
                                 <Button className="avatarButton" shape="circle" icon={<img src={match.dog_images} className="avatar" />} />
                             </Tooltip>
@@ -37,11 +37,11 @@ const Matchs =({users})=> {
             </div>
             }
             { 
-                !loading && !users?.length>0 && <img src="../../../images/dogholmeseditmatch.jpg" className="noDogs" alt="No hay matchs que mostrar" /> 
+                !loading && !matchs?.length>0 && <img src="../../../images/dogholmeseditmatch.jpg" className="noDogs" alt="No hay matchs que mostrar" /> 
             }
         </Fragment>
     )
 }
 
-const mapStateToProps =({user})=>({users:user.users});
+const mapStateToProps =({user})=>({matchs:user.matchs});
 export default connect(mapStateToProps)(Matchs) ; 

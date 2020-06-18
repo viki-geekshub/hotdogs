@@ -9,12 +9,25 @@ const userReducer = (state = {}, action) => {
                 user: action.payload
             }
         case 'GET_ALL_USERS':
-        case 'GET_ALL_USERS_MATCHS':
-        case 'CLEAN_USERS':
             return {
                ...state,
                 users: action.payload
             }  
+        case 'GET_ALL_USERS_MATCHS':
+            return{
+                ...state,
+                matchs: action.payload
+            }
+        case 'CLEAN_USERS':
+            return{
+                ...state,
+                users: action.payload
+            }
+        case 'CLEAN_USERS_MATCHS':
+            return{
+                ...state,
+                matchs: action.payload
+            }
         case 'FOLLOW':
         case 'UNFOLLOW':
             return {

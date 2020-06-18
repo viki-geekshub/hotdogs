@@ -52,12 +52,6 @@ export const getAllUsers = async() => {
         console.error(error)
     }
 }
-export const cleanUp = () => { // Función para resetear los usuarios, para desmontar el componente y dejarlo vacío al terminar con él
-    store.dispatch({
-        type: 'CLEAN_USERS',
-        payload: []
-    })
-}
 export const getOnlyMatchs = async() => {
     try {
         const res = await axios.get(API_URL + 'users/matchs', {
@@ -73,6 +67,16 @@ export const getOnlyMatchs = async() => {
     } catch (error) {
         console.error(error)
     }
+}
+export const cleanUp = () => { // Función para resetear los usuarios, para desmontar el componente y dejarlo vacío al terminar con él
+    store.dispatch({
+        type: 'CLEAN_USERS',
+        payload: []
+    })
+    store.dispatch({
+        type: 'CLEAN_MATCHS',
+        payload: []
+    })
 }
 // export const getUserDetail = async() => {
 //     try {
