@@ -26,6 +26,7 @@ Route::prefix('v1')->group(function(){
         Route::middleware('auth:api')->group(function(){
             Route::get('logout', 'UserController@logout');
             Route::get('','UserController@getAll');
+            Route::get('matchs','UserController@getOnlyMatchs');
             Route::get('follow/{followedId}','UserController@like');
             Route::get('unfollow/{followedId}','UserController@nope');
             Route::get('info', 'UserController@infoUser');

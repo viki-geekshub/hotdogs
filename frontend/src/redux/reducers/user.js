@@ -3,18 +3,23 @@ const userReducer = (state = {}, action) => {
         case 'LOGIN':
         case 'LOGOUT': 
         case 'GET_USER':
-        case 'FOLLOW':
-        case 'UNFOLLOW':
         case 'SET_USER':
             return {
                 ...state,
                 user: action.payload
             }
         case 'GET_ALL_USERS':
+        case 'GET_ALL_USERS_MATCHS':
+        case 'CLEAN_USERS':
             return {
                ...state,
                 users: action.payload
             }  
+        case 'FOLLOW':
+        case 'UNFOLLOW':
+            return {
+                ...state
+            }
         default:
             return state;
     }

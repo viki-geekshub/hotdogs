@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
     padding: 1rem;
-    a {
-        all: unset;
-        padding: 0.5em;
+    width: 100%;
+    img{
+        width: 2em;
         margin: 0 2em;
         cursor: pointer;
         // color: pink;
@@ -12,8 +12,5 @@
         //     background-color: #e01a3b;
         //     color: grey;
         // }
-    }
-    img{
-        width: 2em;
     }
 }

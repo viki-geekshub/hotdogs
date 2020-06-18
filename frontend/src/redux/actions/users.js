@@ -47,6 +47,29 @@ export const getAllUsers = async() => {
             type: 'GET_ALL_USERS',
             payload: res.data
         })
+        return res.data;
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const cleanUp = () => { // Función para resetear los usuarios, para desmontar el componente y dejarlo vacío al terminar con él
+    store.dispatch({
+        type: 'CLEAN_USERS',
+        payload: []
+    })
+}
+export const getOnlyMatchs = async() => {
+    try {
+        const res = await axios.get(API_URL + 'users/matchs', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('authToken')
+            }
+        });
+        store.dispatch({
+            type: 'GET_ALL_USERS_MATCHS',
+            payload: res.data
+        })
+        return res.data;
     } catch (error) {
         console.error(error)
     }
@@ -60,7 +83,7 @@ export const getAllUsers = async() => {
 // }
 export const follow = async(user_id) => {
     try {
-        await axios.get(API_URL + 'users/follow/' + user_id, {
+        const res = await axios.get(API_URL + 'users/follow/' + user_id, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('authToken')
             }
@@ -69,6 +92,7 @@ export const follow = async(user_id) => {
             type: 'FOLLOW',
         })
         getAllUsers();
+        return res;
     } catch (error) {
         console.error(error)
     }

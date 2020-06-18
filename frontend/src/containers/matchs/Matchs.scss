@@ -1,0 +1,36 @@
+.matchsList{
+    .userMatch{
+        display: flex;
+        align-items:baseline;
+        font-size: 1.3em;
+        border: 1px solid black;
+        border-radius: 0.5em;
+        margin: 1em;
+
+        .avatar {
+            object-fit: cover;
+            height: 3em;
+            width: 3em;
+            border-radius: 50%;
+            border: 2px solid black;
+        }
+        .avatarButton{
+            width: 3em;
+            height: 3em;
+            padding: 0;
+            margin-left: 2em;
+            margin-right: 1em;
+            margin-bottom: 0.5em;
+            margin-top: 0.5em
+        }
+    }
+}
+.noDogs{
+    width: 25em;
+}
+.spinner{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    height: 65vh;
+}

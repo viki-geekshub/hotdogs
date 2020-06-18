@@ -101,11 +101,22 @@ class UserController extends Controller
             $interacted_ids = DB::table('matchs')->where('follower_id', $user_id)->where(function($query){
                 $query->where('like',1)->orWhere('nope',1);
             })->get()->pluck('followed_id'); //pluck: para sacar un array de objetos
-           
-
             $users = User::whereNotIn('id', $interacted_ids->push($user_id))->get();
             return response($users);
         } catch (\Exception $error) {
+            return response([
+                'error' => $error
+            ], 500);
+        }
+    }
+    public function getOnlyMatchs(){
+        try{
+            $user_id = Auth::id();
+            $matchs_id = DB::table('matchs')->where('follower_id', $user_id)->where('match', 1)->get()->pluck('followed_id');
+            $users = User::whereIn('id', $matchs_id)->get();
+            return response($users);
+            
+        }catch (\Exception $error) {
             return response([
                 'error' => $error
             ], 500);
@@ -130,9 +141,8 @@ class UserController extends Controller
             if($isMatch){
                 $user = User::find($followedId);
                 $mutualFollowers->update(['match'=>true]);
-                  return response(['message'=>'has hecho match','user'=>$user],201);
-                }
-            return response(['message'=>'Te mola']);
+                  return response(['message'=>'Tienes un match!!','user'=>$user],201);
+                } else { return response(['message'=>'Te gusta!!']); }
     }
     public function nope($followedId)
     {
@@ -144,7 +154,7 @@ class UserController extends Controller
             'match'=>false,
             'nope'=>true,
             ]);
-            return response(['message'=>'No te mola']);
+            return response(['message'=>'No te gusta']);
     }
     // public function addComment(Request $request,$id)
     // {
